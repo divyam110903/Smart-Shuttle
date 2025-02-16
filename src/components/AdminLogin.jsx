@@ -1,9 +1,18 @@
-import React from 'react';
+import React, { useState } from "react";
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import { Mail, Lock, User } from 'lucide-react';
 import { useNavigate } from "react-router-dom";
 const AdminLogin = ({ switchToUser }) => {
+
    const navigate = useNavigate(); 
+
+   const [username, setUsername] = useState("admin@mail.com");
+   const [password, setPassword] = useState("@admin1995");
+   const [error, setError] = useState("");
+   const hardcodedAdmin = {
+    username: "admin@mail.com",
+    password: "@admin1995",
+  };
   
       const handleLogin = (e) => {
         e.preventDefault();
@@ -34,6 +43,9 @@ const AdminLogin = ({ switchToUser }) => {
                 <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
                 <input 
                   type="email" 
+                  placeholder="Username"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
                   className="w-full p-3 pl-10 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-blue-500 transition-all" 
                 />
               </div>
@@ -43,7 +55,10 @@ const AdminLogin = ({ switchToUser }) => {
               <div className="relative">
                 <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
                 <input 
-                  type="password" 
+                  type="password"
+                  placeholder="Password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   className="w-full p-3 pl-10 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-blue-500 transition-all" 
                 />
               </div>
